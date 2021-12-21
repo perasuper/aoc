@@ -18,20 +18,14 @@ class Bingo:
 
     @property
     def game_cards(self) -> np.ndarray:
-        all_cards = np.array([], dtype=int)
+        # all_cards = np.array([], dtype=int)
+        all_cards = []
         for i in range(2, len(self.input_stream), 6):
             items = []
             for j in range(i, i+5):
                 items.append([int(number) for number in self.input_stream[j].split()])
-            new_card = np.array(items)
-            # TODO: jotain järkeä tähän paskaan
-            if i == 2:  # first card
-                all_cards = new_card
-            elif i == 8:  # second card
-                all_cards = np.stack((all_cards, new_card))
-            else:
-                all_cards = np.reshape(np.append(all_cards, new_card), (len(all_cards) + 1, 5, 5))
-        return all_cards
+            all_cards.append(np.array(items))
+        return np.array(all_cards)
 
 
 if __name__ == '__main__':
