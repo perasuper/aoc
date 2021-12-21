@@ -14,7 +14,6 @@ class Bingo:
 
     @property
     def game_cards(self) -> np.ndarray:
-        # all_cards = np.array([], dtype=int)
         all_cards = []
         for i in range(2, len(self.input_stream), 6):
             items = []
