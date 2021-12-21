@@ -6,11 +6,7 @@ import numpy as np
 
 class Bingo:
     def __init__(self, input_file: str = None):
-        self.input_stream = self.__read_input(input_file)
-
-    @staticmethod
-    def __read_input(file_name: str) -> list:
-        return open(file_name, 'r').readlines()
+        self.input_stream = open(input_file, 'r').readlines()
 
     @property
     def drawn_numbers(self) -> np.array:
