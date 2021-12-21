@@ -32,9 +32,9 @@ if __name__ == '__main__':
         checking_cards[np.where(bingo.game_cards == drawn_number)] = 1
         # Start checking cards after 5 numbers are drawn
         if idx >= 5:
-            # use x as index to check all columns and rows
-            for x in range(0, 5):
-                for id_card, checking_card in enumerate(checking_cards):
+            for id_card, checking_card in enumerate(checking_cards):
+                # index to check all columns and rows
+                for x in range(0, 5):
                     if (all(checking_card[x, :] == 1) or all(checking_card[:, x] == 1)) and id_card not in won_cards:
                         winning_card = bingo.game_cards[id_card, :, :]
                         score = sum(winning_card[np.where(checking_card == 0)]) * drawn_number
