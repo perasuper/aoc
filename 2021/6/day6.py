@@ -1,19 +1,20 @@
 from os import path
 from pathlib import Path
 
-import numpy as np
-
 
 file_i = path.join(Path(__file__).parent.absolute(), 'input.txt')
+with open(file_i) as f:
+    start_fish = [int(x) for x in f.readline().strip().split(",")]
 
-with open(file_i, 'r') as f:
-    fishes = np.fromstring(f.readline(), dtype=int, sep=',')
+db = 1
+fish_states = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+for f in start_fish:
+    fish_states[f] += 1
 
-for d in range(0, 256):
-    fishes -= 1
-    fishes = np.append(fishes, np.ones(np.count_nonzero(fishes == -1), dtype=int) * 8)
-    fishes[np.where(fishes == -1)] = 6
+days = 256
+for i in range(days-1):
+    fish_states = fish_states[1:] + fish_states[:1]
+    fish_states[7] += fish_states[0]
 
-print(f'{len(fishes)} fishes')
-
+print(f'{sum(fish_states)} fish')
 
