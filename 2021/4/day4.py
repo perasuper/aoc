@@ -57,5 +57,4 @@ if __name__ == '__main__':
                         elif len(won_cards) == len(bingo.game_cards) - 1:
                             print(f'\nlast card to get bingo ({idx}th number)\n{winning_card}\n{checking_card}')
                             print(f'score: {score}, winning card: {id_card}')
-                            db = 1
                         won_cards.append(id_card)
